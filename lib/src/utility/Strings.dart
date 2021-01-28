@@ -11,7 +11,8 @@ class Strings {
   static const most_popular_branch = 'THƯƠNG HIỆU VÀNG YÊU THÍCH NHẤT';
 
   //url base
-  static const url = "https://api-bvhcm.digitechglobalco.com/";
+  //static const url = "https://api-bvhcm.digitechglobalco.com/";
+  static const url = "https://api-bvhcm-uat.vndigitech.com/";
   static const url_local = "http://localhost:3000/";
 
   //Common
@@ -47,9 +48,14 @@ class Strings {
   //Login
   static const email_text = 'Email';
   static const pass_word = 'Mật khẩu';
+  static const confirm_password = 'Xác nhận mật khẩu';
   static const String login_text = 'Đăng nhập';
+  static const String register_text = 'Đăng ký';
   static const String LOGIN_TEXT = 'ĐĂNG NHẬP';
+  static const String REGISTER_TEXT = 'ĐĂNG KÝ';
   static const String forgot_pass_word = "Quên mật khẩu?";
+  static const String already_have_account = "Đã có tài khoản? Đăng nhập";
+  static const String dont_have_account = "Chưa có tài khoản? Đăng ký";
   static const String newPassWasSent =
       "Password mới đã gửi tới địa chỉ email của bạn";
   static const String email_or_pass_is_empty = 'Email hoặc mật khẩu còn trống';

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:device_info/device_info.dart';
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:load/load.dart';
@@ -17,10 +18,12 @@ import 'package:mobile/src/domain/entities/customer/UpdateCustomer.dart';
 import 'package:mobile/src/domain/entities/ios.dart';
 import 'package:mobile/src/domain/entities/login/ChangePassResponse.dart';
 import 'package:mobile/src/domain/entities/login/LoginResponse.dart';
+import 'package:mobile/src/domain/entities/register/RegisterResponse.dart';
 import 'package:mobile/src/domain/entities/login/UserInfor.dart';
 import 'package:mobile/src/domain/entities/profile/CreateProfileResponse.dart';
 import 'package:mobile/src/domain/entities/profile/ProfileDetailReponse.dart';
 import 'package:mobile/src/domain/entities/profile/ProfileResponse.dart';
+import 'package:mobile/src/domain/repositories/register/register_repository.dart';
 import 'package:mobile/src/utility/LoggerUtil.dart';
 import 'package:mobile/src/utility/Utils.dart';
 import 'package:rxdart/subjects.dart';
@@ -49,10 +52,11 @@ class APIProvider {
 
   APIProvider._internal() {
     BaseOptions options = new BaseOptions(
-//       baseUrl: "https://api-bvhcm.digitechglobalco.com/",
+      // baseUrl: "https://api-bvhcm.digitechglobalco.com/",
       // baseUrl: "https://api-bvhcm.vndigitech.com/",
-//      baseUrl: "http://192.168.100.18:13000/",
-      baseUrl: "https://api-bvhcm-uat.vndigitech.com/",
+      // baseUrl: "http://192.168.100.18:13000/",
+      // baseUrl: "https://api-bvhcm-uat.vndigitech.com/",
+      baseUrl: "http://103.98.160.105:4100/",
       connectTimeout: 60 * 1000, // 60 seconds
       receiveTimeout: 60 * 1000, // 60 seconds
     );
@@ -791,6 +795,37 @@ class APIProvider {
       } catch (error) {
         return null;
       }
+    }
+  }
+
+  Future<RegisterResponse> registerUser(String userID, String password) async {
+    print('ccccc' + userID.toString());
+
+    // try {
+    //   Dio dio = new Dio();
+    //   (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    //       (HttpClient client) {
+    //     client.badCertificateCallback =
+    //         (X509Certificate cert, String host, int port) => true;
+    //     return client;
+    //   };
+    //   Response response = await dio
+    //       .post("auth/login", data: {'email': userID, "password": password});
+    //   print('bbbbb' + response.toString());
+    //   // return RegisterResponse.fromJson(response?.data);
+    // } on DioError catch (e) {
+    //   LoggerUtil().logger.e("Exception occured: $e");
+    //   return RegisterResponse.fromJson(e.response?.data);
+    // }
+
+    try {
+      Response response = await _dio
+          .post("auth/login", data: {'email': userID, "password": password});
+      print('bbbbb' + response.toString());
+      return RegisterResponse.fromJson(response?.data);
+    } on DioError catch (e) {
+      LoggerUtil().logger.e("Exception occured: $e");
+      return RegisterResponse.fromJson(e.response?.data);
     }
   }
 

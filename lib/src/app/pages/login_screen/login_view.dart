@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:load/load.dart';
 import 'package:mobile/src/app/pages/home/main_home_view.dart';
+import 'package:mobile/src/app/pages/register_screen/register_view.dart';
 import 'package:mobile/src/app/pages/login_screen/login_controller.dart';
 import 'package:mobile/src/clean_arch/view.dart';
 import 'package:mobile/src/domain/entities/login.dart';
@@ -240,6 +241,21 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
                       controller.myPasswordListener.text);
                 }
               },
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 10),
+            child: GestureDetector(
+              onTap: () {
+                NavigatorUtilities.pushAndRemoveUntil(
+                    context, RegisterScreen());
+              },
+              child: Text(Strings.dont_have_account,
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.subhead.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 15)),
             ),
           ),
           Row(

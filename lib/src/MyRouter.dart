@@ -78,6 +78,7 @@ class MyRouter {
 class NavigationName {
   static const String HOME = '/home/';
   static const String LOGIN = '/login/';
+  static const String REGISTER = '/register/';
   static const String PROFILE_LANDING = '/profile_landing/';
   static const String CHANGE_PASS = '/change_pass/';
   static const String INVIDUAL_INFOR = '/invidual_infor/';
