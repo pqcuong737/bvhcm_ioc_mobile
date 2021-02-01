@@ -72,7 +72,8 @@ class APIProvider {
       if (!checkTokenValid &&
           (!path.contains("auth/login") &&
               !path.contains("auth/reset-password")) &&
-          !path.contains("auth/refresh")) {
+          !path.contains("auth/refresh") &&
+          !path.contains("public-user/signup")) {
         String refreshToken = await LocalStorageService.getRefreshToken();
         LoginResponse loginResponse = await handleRefreshToken(refreshToken);
         if (loginResponse.statusCode == 200) {
@@ -819,8 +820,8 @@ class APIProvider {
     // }
 
     try {
-      Response response = await _dio
-          .post("auth/login", data: {'email': userID, "password": password});
+      Response response = await _dio.post("public-user/signup",
+          data: {'username': userID, "password": password});
       print('bbbbb' + response.toString());
       return RegisterResponse.fromJson(response?.data);
     } on DioError catch (e) {

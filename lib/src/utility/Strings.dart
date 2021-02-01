@@ -12,7 +12,8 @@ class Strings {
 
   //url base
   //static const url = "https://api-bvhcm.digitechglobalco.com/";
-  static const url = "https://api-bvhcm-uat.vndigitech.com/";
+  //static const url = "https://api-bvhcm-uat.vndigitech.com/";
+  static const url = "http://103.98.160.105:4100/";
   static const url_local = "http://localhost:3000/";
 
   //Common

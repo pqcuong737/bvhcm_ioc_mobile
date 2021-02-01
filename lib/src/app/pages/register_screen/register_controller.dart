@@ -38,27 +38,36 @@ class RegisterScreenController extends Controller {
     };
 
     registerPresenter.getRegisterOnNext = (RegisterResponse registerResponse) {
-      if (registerResponse.statusCode == 200) {
+      // refreshUI();
+      // DialogUtilities.showSimpleDialog(context, Strings.success_text,
+      //     "Đăng ký thành công", Strings.OK_TEXT, null);
+      // if (registerResponse.statusCode == 200) {
+      //   refreshUI();
+      //   DialogUtilities.showSimpleDialog(context, Strings.success_text,
+      //       Strings.success_change_pass, Strings.OK_TEXT, null);
+      // } else {
+      //   DialogUtilities.showSimpleDialog(
+      //       context,
+      //       Strings.error_text,
+      //       Utils.mapKeyToMessageErr(registerResponse.error.message),
+      //       Strings.OK_TEXT,
+      //       null);
+      // }
+      hideLoadingDialog();
+      if (registerResponse.statusCode == 200 &&
+          registerResponse.result.success == true) {
         refreshUI();
         DialogUtilities.showSimpleDialog(context, Strings.success_text,
-            Strings.success_change_pass, Strings.OK_TEXT, null);
+            "Đăng ký thành công", Strings.OK_TEXT, null);
       } else {
         DialogUtilities.showSimpleDialog(
             context,
             Strings.error_text,
-            Utils.mapKeyToMessageErr(registerResponse.error.message),
+            Utils.mapKeyToMessageErr(registerResponse.result.message),
             Strings.OK_TEXT,
             null);
+        refreshUI();
       }
-      hideLoadingDialog();
-      // if (registerResponse.statusCode == 500) {
-      //   print('dddd' + registerResponse.error.message.toString());
-      //   LocalStorageService.saveString(
-      //       LocalStorageService.IS_SUCCESS, registerResponse.error.message);
-      // } else {
-      //   _registerResponse = registerResponse;
-      //   refreshUI();
-      // }
     };
   }
 
