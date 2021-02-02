@@ -73,7 +73,9 @@ class APIProvider {
           (!path.contains("auth/login") &&
               !path.contains("auth/reset-password")) &&
           !path.contains("auth/refresh") &&
-          !path.contains("public-user/signup")) {
+          !path.contains("user/create") &&
+          !path.contains("setting") &&
+          !path.contains("public-user/create")) {
         String refreshToken = await LocalStorageService.getRefreshToken();
         LoginResponse loginResponse = await handleRefreshToken(refreshToken);
         if (loginResponse.statusCode == 200) {
@@ -799,7 +801,8 @@ class APIProvider {
     }
   }
 
-  Future<RegisterResponse> registerUser(String userID, String password) async {
+  Future<RegisterResponse> registerUser(
+      String fullName, String userID, String password) async {
     print('ccccc' + userID.toString());
 
     // try {
@@ -819,9 +822,28 @@ class APIProvider {
     //   return RegisterResponse.fromJson(e.response?.data);
     // }
 
+    // try {
+    //   Response response = await _dio
+    //       .post("setting", data: {'email': userID, "password": password});
+    //   print('bbbbb' + response.toString());
+    //   return RegisterResponse.fromJson(response?.data);
+    // } on DioError catch (e) {
+    //   LoggerUtil().logger.e("Exception occured: $e");
+    //   return RegisterResponse.fromJson(e.response?.data);
+    // }
+
     try {
-      Response response = await _dio.post("public-user/signup",
-          data: {'username': userID, "password": password});
+      // String param = "hello";
+      // _dio.options.headers['User-Agent'] = param;
+      FormData formData = new FormData.fromMap({
+        "email": userID,
+        "password": password,
+        "fullName": fullName,
+        "identity": "0123456789",
+        "role": "AGENCY",
+        "address": "CUSTOMER",
+      });
+      Response response = await _dio.post("public-user/create", data: formData);
       print('bbbbb' + response.toString());
       return RegisterResponse.fromJson(response?.data);
     } on DioError catch (e) {

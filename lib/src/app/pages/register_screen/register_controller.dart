@@ -15,9 +15,11 @@ class RegisterScreenController extends Controller {
   RegisterResponse _registerResponse;
   RegisterResponse get registerResponse => _registerResponse;
 
+  String fullname;
   String username;
   String password;
 
+  TextEditingController textNameListener = TextEditingController();
   TextEditingController textEmailListener = new TextEditingController();
   TextEditingController textPasswordListener = new TextEditingController();
   TextEditingController textConfirmPasswordListener =
@@ -54,8 +56,7 @@ class RegisterScreenController extends Controller {
       //       null);
       // }
       hideLoadingDialog();
-      if (registerResponse.statusCode == 200 &&
-          registerResponse.result.success == true) {
+      if (registerResponse.statusCode == 200) {
         refreshUI();
         DialogUtilities.showSimpleDialog(context, Strings.success_text,
             "Đăng ký thành công", Strings.OK_TEXT, null);
@@ -63,7 +64,7 @@ class RegisterScreenController extends Controller {
         DialogUtilities.showSimpleDialog(
             context,
             Strings.error_text,
-            Utils.mapKeyToMessageErr(registerResponse.result.message),
+            Utils.mapKeyToMessageErr(registerResponse.error.message),
             Strings.OK_TEXT,
             null);
         refreshUI();
@@ -71,10 +72,13 @@ class RegisterScreenController extends Controller {
     };
   }
 
-  RegisterResponse registerUser(String userId, String password) {
+  RegisterResponse registerUser(
+      String fullName, String userId, String password) {
+    this.fullname = fullName;
     this.username = userId;
     this.password = password;
-    _registerResponse = registerPresenter.registerUser(userId, password);
+    _registerResponse =
+        registerPresenter.registerUser(fullName, userId, password);
   }
 
   @override

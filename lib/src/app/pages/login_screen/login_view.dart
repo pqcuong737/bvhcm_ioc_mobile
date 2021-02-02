@@ -247,8 +247,7 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
             padding: EdgeInsets.only(top: 10),
             child: GestureDetector(
               onTap: () {
-                NavigatorUtilities.pushAndRemoveUntil(
-                    context, RegisterScreen());
+                NavigatorUtilities.push(context, RegisterScreen());
               },
               child: Text(Strings.dont_have_account,
                   textAlign: TextAlign.left,

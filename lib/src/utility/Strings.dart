@@ -47,6 +47,7 @@ class Strings {
   static const LOCK = "LOCK";
 
   //Login
+  static const name_text = 'Họ và tên';
   static const email_text = 'Email';
   static const pass_word = 'Mật khẩu';
   static const confirm_password = 'Xác nhận mật khẩu';
@@ -60,6 +61,7 @@ class Strings {
   static const String newPassWasSent =
       "Password mới đã gửi tới địa chỉ email của bạn";
   static const String email_or_pass_is_empty = 'Email hoặc mật khẩu còn trống';
+  static const String field_is_empty = 'Chưa nhập đầy đủ trường thông tin';
   static const String OK_TEXT = 'OK';
   static const String cancel_text = 'Cancel';
   static const String required_field = 'Vui lòng điền thông tin bắt buộc';

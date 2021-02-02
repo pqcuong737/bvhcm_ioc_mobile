@@ -6,7 +6,8 @@ import 'package:mobile/src/utility/APIProvider.dart';
 class RegisterRepository extends BaseRepository {
   APIProvider _apiProvider = APIProvider();
 
-  Future<RegisterResponse> registerUser(String userID, String password) {
-    return _apiProvider.registerUser(userID, password);
+  Future<RegisterResponse> registerUser(
+      String fullName, String userID, String password) {
+    return _apiProvider.registerUser(fullName, userID, password);
   }
 }

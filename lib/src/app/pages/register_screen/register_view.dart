@@ -137,6 +137,29 @@ class RegisterScreenState
               ),
             ),
             child: new TextField(
+              controller: controller.textNameListener,
+              style: TextStyle(
+                fontSize: 15.0,
+                color: Colors.black,
+              ),
+              decoration: InputDecoration(
+//                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                prefixIcon: Icon(Icons.person),
+                hintText: Strings.name_text,
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+          Container(
+            decoration: new BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              border: new Border.all(
+                color: Colors.white,
+                width: 1.0,
+              ),
+            ),
+            child: new TextField(
               controller: controller.textEmailListener,
 //              onChanged: (value) {
 //                setState((){
@@ -155,6 +178,7 @@ class RegisterScreenState
               ),
             ),
           ),
+
           Container(
             decoration: new BoxDecoration(
               shape: BoxShape.rectangle,
@@ -228,7 +252,9 @@ class RegisterScreenState
                 style: TextStyle(fontSize: 16, color: Colors.white),
               ),
               onPressed: () {
-                if (controller.textEmailListener?.text == null ||
+                if (controller.textNameListener.text == null ||
+                    controller.textNameListener.text.isEmpty ||
+                    controller.textEmailListener.text == null ||
                     controller.textEmailListener.text.isEmpty ||
                     controller.textPasswordListener.text == null ||
                     controller.textPasswordListener.text.isEmpty ||
@@ -237,7 +263,7 @@ class RegisterScreenState
                   DialogUtilities.showSimpleDialog(
                       context,
                       Strings.register_text,
-                      Strings.email_or_pass_is_empty,
+                      Strings.field_is_empty,
                       Strings.OK_TEXT,
                       () {});
                 } else if (controller.textConfirmPasswordListener.text !=
@@ -250,8 +276,11 @@ class RegisterScreenState
                       () {});
                 } else {
                   showLoadingDialog(tapDismiss: false);
-                  controller.registerUser(controller.textEmailListener.text,
-                      controller.textPasswordListener.text);
+                  controller.registerUser(
+                    controller.textNameListener.text,
+                    controller.textEmailListener.text,
+                    controller.textPasswordListener.text,
+                  );
                   isCheckRegisterButton = true;
                 }
               },
@@ -261,8 +290,7 @@ class RegisterScreenState
             padding: EdgeInsets.only(top: 10),
             child: GestureDetector(
               onTap: () {
-                NavigatorUtilities.pushAndRemoveUntil(
-                    context, RegisterScreen());
+                NavigatorUtilities.pushAndRemoveUntil(context, LoginScreen());
               },
               child: Text(Strings.already_have_account,
                   textAlign: TextAlign.left,
@@ -328,30 +356,6 @@ class RegisterScreenState
         ],
       ),
     );
-  }
-
-  onCheckNavigate(BuildContext context, RegisterScreenController controller,
-      bool isCheckRegisterButton) async {
-    hideLoadingDialog();
-    // final result = controller.registerResponse;
-    // if (result != null && isCheckRegisterButton) {
-    //   this.isCheckRegisterButton = false;
-    //   if (result.statusCode == 500) {
-    //     final isSucessValue = await LocalStorageService.getIsSuccess();
-    //     print('aaaaaaaa' + isSucessValue.toString());
-    //   } else {
-    //     hideLoadingDialog();
-    //   }
-    // }
-    // {
-    //   hideLoadingDialog();
-    //   DialogUtilities.showSimpleDialog(
-    //       context,
-    //       Strings.error_text,
-    //       Utils.mapKeyToMessageErr(result.error.message),
-    //       Strings.OK_TEXT,
-    //       null);
-    // }
   }
 
   @override

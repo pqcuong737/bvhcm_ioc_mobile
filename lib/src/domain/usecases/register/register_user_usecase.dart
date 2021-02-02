@@ -16,8 +16,8 @@ class RegisterUserUseCase
         StreamController();
     try {
       //get Login Response
-      RegisterResponse registerResponse =
-          await registerRepository.registerUser(params.userID, params.password);
+      RegisterResponse registerResponse = await registerRepository.registerUser(
+          params.fullName, params.userID, params.password);
       // Adding it triggers the .onNext() in the `Observer`
       // It is usually better to wrap the reponse inside a respose object.
       controller.add(GetRegisterCaseResponse(registerResponse));
@@ -34,9 +34,10 @@ class RegisterUserUseCase
 
 /// Wrapping params inside an object makes it easier to change later
 class GetRegisterUserCaseParam {
+  final String fullName;
   final String userID;
   final String password;
-  GetRegisterUserCaseParam(this.userID, this.password);
+  GetRegisterUserCaseParam(this.fullName, this.userID, this.password);
 }
 
 /// Wrapping response inside an object makes it easier to change later
