@@ -280,6 +280,7 @@ class RegisterScreenState
                     controller.textNameListener.text,
                     controller.textEmailListener.text,
                     controller.textPasswordListener.text,
+                    controller.textConfirmPasswordListener.text,
                   );
                   isCheckRegisterButton = true;
                 }

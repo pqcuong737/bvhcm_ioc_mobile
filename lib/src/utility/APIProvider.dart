@@ -801,10 +801,8 @@ class APIProvider {
     }
   }
 
-  Future<RegisterResponse> registerUser(
-      String fullName, String userID, String password) async {
-    print('ccccc' + userID.toString());
-
+  Future<RegisterResponse> registerUser(String fullName, String userID,
+      String password, String confirmPassword) async {
     // try {
     //   Dio dio = new Dio();
     //   (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
@@ -838,6 +836,7 @@ class APIProvider {
       FormData formData = new FormData.fromMap({
         "email": userID,
         "password": password,
+        "confirmPassword": confirmPassword,
         "fullName": fullName,
         "identity": "0123456789",
         "role": "AGENCY",

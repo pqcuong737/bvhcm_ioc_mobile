@@ -18,6 +18,7 @@ class RegisterScreenController extends Controller {
   String fullname;
   String username;
   String password;
+  String confirmPassword;
 
   TextEditingController textNameListener = TextEditingController();
   TextEditingController textEmailListener = new TextEditingController();
@@ -73,12 +74,13 @@ class RegisterScreenController extends Controller {
   }
 
   RegisterResponse registerUser(
-      String fullName, String userId, String password) {
+      String fullName, String userId, String password, String confirmPassword) {
     this.fullname = fullName;
     this.username = userId;
     this.password = password;
-    _registerResponse =
-        registerPresenter.registerUser(fullName, userId, password);
+    this.confirmPassword = confirmPassword;
+    _registerResponse = registerPresenter.registerUser(
+        fullName, userId, password, confirmPassword);
   }
 
   @override

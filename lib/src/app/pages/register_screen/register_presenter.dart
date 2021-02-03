@@ -14,9 +14,9 @@ class RegisterScreenPresenter extends Presenter {
       : registerUserUseCase = RegisterUserUseCase(registerRepo);
 
   RegisterResponse registerUser(
-      String fullName, String userId, String password) {
+      String fullName, String userId, String password, String confirmPassword) {
     registerUserUseCase.execute(GetRegisterUseCaseObserver(this),
-        GetRegisterUserCaseParam(fullName, userId, password));
+        GetRegisterUserCaseParam(fullName, userId, password, confirmPassword));
   }
 
   @override

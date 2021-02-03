@@ -7,7 +7,12 @@ class RegisterRepository extends BaseRepository {
   APIProvider _apiProvider = APIProvider();
 
   Future<RegisterResponse> registerUser(
-      String fullName, String userID, String password) {
-    return _apiProvider.registerUser(fullName, userID, password);
+      String fullName, String userID, String password, String confirmPassword) {
+    return _apiProvider.registerUser(
+      fullName,
+      userID,
+      password,
+      confirmPassword,
+    );
   }
 }
