@@ -56,7 +56,7 @@ class Strings {
   static const String LOGIN_TEXT = 'ĐĂNG NHẬP';
   static const String REGISTER_TEXT = 'ĐĂNG KÝ';
   static const String forgot_pass_word = "Quên mật khẩu?";
-  static const String already_have_account = "Đã có tài khoản? Đăng nhập";
+  static const String already_have_account = "Đã có tài khoản? ";
   static const String dont_have_account = "Chưa có tài khoản? Đăng ký";
   static const String newPassWasSent =
       "Password mới đã gửi tới địa chỉ email của bạn";

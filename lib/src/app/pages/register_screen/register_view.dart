@@ -287,18 +287,33 @@ class RegisterScreenState
               },
             ),
           ),
+          // already account
           Container(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 20),
             child: GestureDetector(
               onTap: () {
                 NavigatorUtilities.pushAndRemoveUntil(context, LoginScreen());
               },
-              child: Text(Strings.already_have_account,
-                  textAlign: TextAlign.left,
-                  style: Theme.of(context).textTheme.subhead.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 15)),
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: Strings.already_have_account,
+                      style: Theme.of(context).textTheme.subhead.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 15),
+                    ),
+                    TextSpan(
+                      text: Strings.login_text,
+                      style: Theme.of(context).textTheme.subhead.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           Row(

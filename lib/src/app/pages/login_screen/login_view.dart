@@ -214,6 +214,7 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
               ),
             ),
           ),
+          // login button
           Container(
             margin: const EdgeInsets.only(top: 20.0),
             width: _size.width,
@@ -243,20 +244,40 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
               },
             ),
           ),
+          // register button
           Container(
-            padding: EdgeInsets.only(top: 10),
-            child: GestureDetector(
-              onTap: () {
+            margin: const EdgeInsets.only(top: 10.0),
+            width: _size.width,
+            decoration: new BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(8.0))),
+            child: FlatButton(
+              textColor: Colors.blue,
+              child: Text(
+                Strings.REGISTER_TEXT,
+                style: TextStyle(fontSize: 16, color: Colors.blue),
+              ),
+              onPressed: () {
                 NavigatorUtilities.push(context, RegisterScreen());
               },
-              child: Text(Strings.dont_have_account,
-                  textAlign: TextAlign.left,
-                  style: Theme.of(context).textTheme.subhead.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 15)),
             ),
           ),
+          // don't have account
+          // Container(
+          //   padding: EdgeInsets.only(top: 10),
+          //   child: GestureDetector(
+          //     onTap: () {
+          //       NavigatorUtilities.push(context, RegisterScreen());
+          //     },
+          //     child: Text(Strings.dont_have_account,
+          //         textAlign: TextAlign.left,
+          //         style: Theme.of(context).textTheme.subhead.copyWith(
+          //             color: Colors.white,
+          //             fontWeight: FontWeight.normal,
+          //             fontSize: 15)),
+          //   ),
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
