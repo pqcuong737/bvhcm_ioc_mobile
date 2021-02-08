@@ -58,6 +58,13 @@ dependencies:
   export_video_frame: ^0.0.5+4
   image_picker: ^0.6.6+4
   flutter_plugin_android_lifecycle: 1.0.3
+  flutter_launcher_icons: ^0.8.0
+
+flutter_icons:
+    android: true
+    ios: true
+    image_path: "assets/icons/ic_launcher.png"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
