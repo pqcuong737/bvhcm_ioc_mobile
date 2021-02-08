@@ -92,6 +92,8 @@ flutter:
     - assets/images/sample_avatar.png
     - assets/images/bg.png
     - assets/images/logo.png
+    - assets/images/logo_login.png
+    - assets/images/logo_vndigitech.png
     - assets/images/guide.png
     - assets/images/chassis_img.png
     - assets/images/car.png

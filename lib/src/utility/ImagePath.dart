@@ -1,7 +1,9 @@
 class ImagePath {
   static const background = "assets/images/bg.png";
   static const sample_avatar = "assets/images/sample_avatar.png";
+  static const logo_vndigitech = "assets/images/logo_vndigitech.png";
   static const logo = "assets/images/logo.png";
+  static const logo_login = "assets/images/logo_login.png";
   static const ic_customer = "assets/icons/ic_customer.png";
   static const ic_item_category = "assets/icons/ic_item_category.png";
   static const ic_item_customer = "assets/icons/ic_item_customer.png";
@@ -17,7 +19,7 @@ class ImagePath {
   static const ic_video = "assets/icons/ic_video.png";
   static const ic_camera = "assets/icons/ic_camera.png";
   static const ic_close = "assets/icons/ic_close.png";
-  static const ic_wifi= "assets/icons/wifi.png";
+  static const ic_wifi = "assets/icons/wifi.png";
   static const search = 'assets/images/search.png';
   static const thumb = 'assets/images/thumb.png';
   static const ic_load = 'assets/icons/load.png';

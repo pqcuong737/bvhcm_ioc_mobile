@@ -3,8 +3,13 @@ class Strings {
   static const logout = "Logout";
   static const setting = "Cài đặt";
   static const company_name = 'CÔNG TY BẢO VIỆT TP HỒ CHÍ MINH';
+  static const company_name_vndigitech = 'CÔNG TY VNDIGITECH';
   static const company_subtitle = 'BAOVIET HCM IOC';
+  static const company_subtitle_vndigitech = 'VNDIGITECH IOC';
+
   static const company_address = '23-25 Thái Văn Lung, Bến Nghé, Quận 1, HCM';
+  static const company_address_vndigitech =
+      'E9 Đường A2, P.Tân Thới Nhất, Q.12, HCM';
   static const company_phone_number = '028 3824 7575';
   static const loading = 'Loading...';
   static const popular_activity = 'Hoạt động phổ biến';

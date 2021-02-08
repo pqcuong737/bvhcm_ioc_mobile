@@ -8,6 +8,7 @@ import 'package:mobile/src/clean_arch/view.dart';
 import 'package:mobile/src/domain/entities/register.dart';
 import 'package:mobile/src/domain/repositories/register/register_repository.dart';
 import 'package:mobile/src/utility/APIProvider.dart';
+import 'package:mobile/src/utility/Colors.dart';
 import 'package:mobile/src/utility/DialogUtilities.dart';
 import 'package:mobile/src/utility/ImagePath.dart';
 import 'package:mobile/src/utility/LocalStorageService.dart';
@@ -45,13 +46,25 @@ class RegisterScreenState
         body: Stack(
       children: <Widget>[
         Container(
-          decoration: new BoxDecoration(
-            image: new DecorationImage(
-              image: new AssetImage(ImagePath.background),
-              fit: BoxFit.cover,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                backgroundColorLinearTop,
+                backgroundColorLinearBottom,
+              ],
             ),
           ),
         ),
+        // Container(
+        //   decoration: new BoxDecoration(
+        //     image: new DecorationImage(
+        //       image: new AssetImage(ImagePath.background),
+        //       fit: BoxFit.cover,
+        //     ),
+        //   ),
+        // ),
         Container(
           child: SingleChildScrollView(
               child: new Column(
@@ -92,15 +105,16 @@ class RegisterScreenState
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Image.asset(
-            ImagePath.logo,
-            fit: BoxFit.fitWidth,
+            // ImagePath.logo,
+            ImagePath.logo_login,
+            height: 60,
           ),
           SizedBox(
             height: 10,
           ),
           FittedBox(
               child: Text(
-            'CÔNG TY BẢO VIỆT TP HỒ CHÍ MINH',
+            'CÔNG TY VNDIGITECH',
             style: Theme.of(context)
                 .textTheme
                 .subhead
@@ -110,7 +124,7 @@ class RegisterScreenState
             height: 10,
           ),
           Text(
-            'BAOVIET HCM IOC',
+            'VNDIGITECH IOC',
             style: Theme.of(context)
                 .textTheme
                 .subhead
@@ -118,7 +132,7 @@ class RegisterScreenState
           ),
           Padding(
               padding: EdgeInsets.fromLTRB(
-                  20, _size.width / 7, 20, _size.width / 10),
+                  15, _size.width / 8, 15, _size.width / 12),
               child: Text(Strings.register_text,
                   style: Theme.of(context).textTheme.subhead.copyWith(
                       color: Colors.white,
