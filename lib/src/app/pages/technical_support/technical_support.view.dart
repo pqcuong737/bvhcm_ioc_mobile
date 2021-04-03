@@ -111,17 +111,13 @@ class _TechnicalPageState extends State<TechnicalPage> {
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        height: 18.0
-                      ),
+                      SizedBox(height: 18.0),
                       Container(
                         decoration: BoxDecoration(
                             border: Border(
                                 bottom: BorderSide(color: Colors.grey[300]))),
                       ),
-                      SizedBox(
-                          height: 18.0
-                      ),
+                      SizedBox(height: 18.0),
                       Row(
                         children: <Widget>[
                           Text(
@@ -133,14 +129,10 @@ class _TechnicalPageState extends State<TechnicalPage> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                          height: 18.0
-                      ),
-                  showInfoSupport(context, "Địa chỉ",
-                      Strings.address_company_support_user, false, false),
-                      SizedBox(
-                          height: 18.0
-                      ),
+                      SizedBox(height: 18.0),
+                      // showInfoSupport(context, "Địa chỉ",
+                      //     Strings.address_company_support_user, false, false),
+                      SizedBox(height: 18.0),
                       showInfoSupport(context, "Điện thoại",
                           Strings.phone_support_user, false, false),
                     ],
@@ -165,23 +157,26 @@ class _TechnicalPageState extends State<TechnicalPage> {
             ? RichText(
                 text: TextSpan(
                 text: text,
-                style: TextStyle(color: Colors.blue, fontSize: 16.0, decoration: TextDecoration.underline),
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16.0,
+                    decoration: TextDecoration.underline),
                 recognizer: new TapGestureRecognizer()
                   ..onTap = () async {
-                   await launch(text);
+                    await launch(text);
                   },
               ))
             : Container(
-              width: 220.0,
-              child: Text(
+                width: 220.0,
+                child: Text(
                   text,
                   style: TextStyle(
-                      color: isColor ? Colors.blue : Colors.black,
-                      fontSize: 16.0,),
-                      textAlign:
-                  TextAlign.right,
+                    color: isColor ? Colors.blue : Colors.black,
+                    fontSize: 16.0,
+                  ),
+                  textAlign: TextAlign.right,
                 ),
-            ),
+              ),
       ],
     );
   }

@@ -1,9 +1,8 @@
 class ImagePath {
   static const background = "assets/images/bg.png";
   static const sample_avatar = "assets/images/sample_avatar.png";
-  static const logo_vndigitech = "assets/images/logo_vndigitech.png";
   static const logo = "assets/images/logo.png";
-  static const logo_login = "assets/images/logo_login.png";
+  static const logo_digitech = "assets/images/logo_digitech.png";
   static const ic_customer = "assets/icons/ic_customer.png";
   static const ic_item_category = "assets/icons/ic_item_category.png";
   static const ic_item_customer = "assets/icons/ic_item_customer.png";

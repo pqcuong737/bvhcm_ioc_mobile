@@ -1,10 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:mobile/src/domain/entities/login/UserInfor.dart';
 import 'package:mobile/src/domain/entities/profile/ProfileResponse.dart'
     as Profile;
-import 'package:mobile/src/domain/entities/register/RegisterResponse.dart';
 import 'package:mobile/src/utility/APIProvider.dart';
 import 'package:mobile/src/utility/Utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,7 +17,6 @@ class LocalStorageService {
 //  static const PASSWORD = "PASSWORD";
   static const FRESH_TOKEN = "FRESH_TOKEN";
   static const SAVE_PAGE = "SAVE_PAGE";
-  static const IS_SUCCESS = "IS_SUCCESS";
 
   ///User Infor
   static const USER_ID = "USER_ID";
@@ -33,7 +30,6 @@ class LocalStorageService {
   static const USER_GROUP = "USER_GROUP";
   static const SET_REMEMBER = "SET_REMEMBER";
   static const SET_LOGIN = "SET_LOGIN";
-  static const SET_REGISTER = "SET_REGISTER";
 
   ///Profile
   static const PROFILE_COUNT = "PROFILE_COUNT";
@@ -59,8 +55,7 @@ class LocalStorageService {
   }
 
   static Future<String> getToken() async {
-    if (APIProvider().accessToken != null &&
-        APIProvider().accessToken.isEmpty) {
+    if (APIProvider().accessToken != null && APIProvider().accessToken.isEmpty) {
       String token = await _sharedPreferences.getString(TOKEN_KEY);
       APIProvider().accessToken = token;
       return token;
@@ -136,10 +131,6 @@ class LocalStorageService {
     _sharedPreferences.setString(SET_LOGIN, value);
   }
 
-  static void saveRegister(String value) {
-    _sharedPreferences.setString(SET_REGISTER, value);
-  }
-
   ///SAVE LOCATION LONG
   static void saveLocationLong(String value) {
     _sharedPreferences.setString(SET_LOCATION_LONG, value);
@@ -162,11 +153,6 @@ class LocalStorageService {
     return _sharedPreferences.getString(SET_LOGIN);
   }
 
-  // for demo register
-  static Future<String> getIsSuccess() async {
-    return _sharedPreferences.getString(IS_SUCCESS);
-  }
-
   static void saveUserInfor(UserInfor userInfor) {
     /*_sharedPreferences.setInt(USER_ID, userInfor.result.id);
     _sharedPreferences.setString(USER_FULL_NAME, userInfor.result.fullName);
@@ -177,14 +163,6 @@ class LocalStorageService {
     _sharedPreferences.setString(USER_AVATAR, userInfor.result.avatarUrl);
     _sharedPreferences.setString(USER_GROUP, userInfor.result.userGroups.toString());*/
     _sharedPreferences.setString(USERINFOR, jsonEncode(userInfor));
-  }
-
-  static Future<RegisterResponse> getRegister() async {
-    final data = _sharedPreferences.getString(SET_REGISTER);
-    if (data == null) return null;
-    final Map<String, dynamic> rawData = json.decode(data);
-    final newData = RegisterResponse.fromJson(rawData);
-    return newData;
   }
 
   static Future<UserInfor> getUserInfor() async {
@@ -210,7 +188,7 @@ class LocalStorageService {
     final existedData = _sharedPreferences.getString(profileId);
     if (profileData.latitude == null && profileData.longitude == null) {
       if ((profileData.imgCarFrontPositionRight != null &&
-              profileData.imgCarFrontPositionRight.contains('images-')) ||
+          profileData.imgCarFrontPositionRight.contains('images-')) ||
           (profileData.imgCarFrontPositionLeft != null &&
               profileData.imgCarFrontPositionLeft.contains('images-')) ||
           (profileData.imgCarRearPositionRight != null &&

@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:logger/logger.dart';
 import 'package:mobile/src/app/pages/home/main_home_view.dart';
 import 'package:mobile/src/clean_arch/view.dart';
 import 'package:mobile/src/domain/entities/profile/ProfileResponse.dart';
@@ -185,6 +187,7 @@ class _CarImagePageState extends ViewState<CarImagePage, CarImageController> {
   }
 
   Widget _buildSectionTitle(String title, {isMandatory = false}) {
+    LoggerUtil().logger.e('vietsaclo------------------buildtitle');
     return Padding(
         padding: EdgeInsets.fromLTRB(20, 10, 10, 20),
         child: RichText(
@@ -212,6 +215,8 @@ class _CarImagePageState extends ViewState<CarImagePage, CarImageController> {
     final itemSize = MediaQuery.of(context).size.width * 0.35;
     final maxSize = 5;
     int numberOfImages = imagePath.value.length;
+    LoggerUtil().logger.e('vietsaclo------------------camera : ' +
+        imagePath.value.length.toString());
     return Padding(
         padding: EdgeInsets.fromLTRB(20, 10, 10, 20),
         child: Stack(
@@ -226,9 +231,10 @@ class _CarImagePageState extends ViewState<CarImagePage, CarImageController> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                     child: InkWell(
-                      onTap: () {
-                        navigateToCameraCapture(context, '', imagePath.value,
-                            isVideo, videoThumbnail);
+                      onTap: () async {
+                        await navigateToCameraCapture(context, '',
+                            imagePath.value, isVideo, videoThumbnail);
+                        setState(() {});
                       },
                       child: Container(
                         height: 60,
@@ -274,6 +280,9 @@ class _CarImagePageState extends ViewState<CarImagePage, CarImageController> {
                               : (numberOfImages + 1))
                           : 1,
                       itemBuilder: (context, index) {
+                        LoggerUtil().logger.e(
+                            'vietsaclo------------------go_buildItemImages : ' +
+                                imagePath.value.length.toString());
                         return _buildItemImages(index, isMultiFiles, itemSize,
                             imagePath.value, isVideo, videoThumbnail);
                       }),
@@ -290,6 +299,8 @@ class _CarImagePageState extends ViewState<CarImagePage, CarImageController> {
       bool isVideo,
       ValueNotifier<String> videoThumbnail) {
     final isLast = (index == filePaths.length);
+    LoggerUtil().logger.e('vietsaclo------------------_buildItemImages : ' +
+        filePaths.length.toString());
     if (isMultiFiles && isLast) {
       return Container(
           width: itemSize,
@@ -408,7 +419,12 @@ class _CarImagePageState extends ViewState<CarImagePage, CarImageController> {
       isPreview = false}) async {
     final result = await NavigatorUtilities.push(
         context, controller.getNextPage(isVideo, isPreview, filePath));
+
     String newFilePath = result;
+
+    LoggerUtil()
+        .logger
+        .e('vietsaclo---------------newFilePath: ' + newFilePath);
     if (result == 'delete') {
       setState(() {
         filePaths.remove(filePath);
@@ -422,11 +438,21 @@ class _CarImagePageState extends ViewState<CarImagePage, CarImageController> {
     }
     if (newFilePath != null && newFilePath.isNotEmpty) {
       final index = filePaths.indexOf(filePath);
+      LoggerUtil().logger.e('vietsaclo---------------goFilePath: pass01');
       if (isEdit) filePaths.remove(filePath);
-      if (filePath.isEmpty)
+      LoggerUtil().logger.e(
+          'vietsaclo---------------goFilePath: pass02: filePath: ' + filePath);
+      if (filePath.isEmpty) {
         filePaths.add(newFilePath);
-      else
+        LoggerUtil().logger.e('vietsaclo---------------filePath.isEmpty:');
+        LoggerUtil().logger.e('vietsaclo---------------FilePaths Len: ' +
+            filePaths.length.toString());
+      } else {
         filePaths.insert(index, newFilePath);
+        LoggerUtil()
+            .logger
+            .e('vietsaclo---------------insert: index: ' + index.toString());
+      }
     }
   }
 

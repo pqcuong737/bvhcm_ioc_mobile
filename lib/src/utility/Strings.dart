@@ -2,24 +2,17 @@ class Strings {
   static const home = "Trang Chủ";
   static const logout = "Logout";
   static const setting = "Cài đặt";
-  static const company_name = 'CÔNG TY BẢO VIỆT TP HỒ CHÍ MINH';
-  static const company_name_vndigitech = 'CÔNG TY VNDIGITECH';
-  static const company_subtitle = 'BAOVIET HCM IOC';
-  static const company_subtitle_vndigitech = 'VNDIGITECH IOC';
-
-  static const company_address = '23-25 Thái Văn Lung, Bến Nghé, Quận 1, HCM';
-  static const company_address_vndigitech =
-      'E9 Đường A2, P.Tân Thới Nhất, Q.12, HCM';
+  static const company_name = 'CÔNG TY TNHH';
+  static const company_subtitle = 'Digitech Solutions';
+  static const company_address = 'E9, A2 Tân Thới Nhất, Quận 12, HCM';
   static const company_phone_number = '028 3824 7575';
   static const loading = 'Loading...';
   static const popular_activity = 'Hoạt động phổ biến';
   static const most_popular_branch = 'THƯƠNG HIỆU VÀNG YÊU THÍCH NHẤT';
 
   //url base
-  //static const url = "https://api-bvhcm.digitechglobalco.com/";
-  //static const url = "https://api-bvhcm-uat.vndigitech.com/";
-  static const url = "http://103.98.160.105:4100/";
-  static const url_local = "http://localhost:3000/";
+  static const url = "http://103.98.160.114:3500/";
+  static const url_local = "http://103.98.160.114:3500/";
 
   //Common
   static const edit = "Sửa";
@@ -52,21 +45,14 @@ class Strings {
   static const LOCK = "LOCK";
 
   //Login
-  static const name_text = 'Họ và tên';
   static const email_text = 'Email';
   static const pass_word = 'Mật khẩu';
-  static const confirm_password = 'Xác nhận mật khẩu';
   static const String login_text = 'Đăng nhập';
-  static const String register_text = 'Đăng ký';
   static const String LOGIN_TEXT = 'ĐĂNG NHẬP';
-  static const String REGISTER_TEXT = 'ĐĂNG KÝ';
   static const String forgot_pass_word = "Quên mật khẩu?";
-  static const String already_have_account = "Đã có tài khoản? ";
-  static const String dont_have_account = "Chưa có tài khoản? Đăng ký";
   static const String newPassWasSent =
       "Password mới đã gửi tới địa chỉ email của bạn";
   static const String email_or_pass_is_empty = 'Email hoặc mật khẩu còn trống';
-  static const String field_is_empty = 'Chưa nhập đầy đủ trường thông tin';
   static const String OK_TEXT = 'OK';
   static const String cancel_text = 'Cancel';
   static const String required_field = 'Vui lòng điền thông tin bắt buộc';
@@ -307,13 +293,13 @@ class Strings {
       "Vui lòng liên hệ nhóm phát triển kỹ thuật để được hỗ trợ tốt nhất";
   static const name_company_support = "Công ty Digitech Solutions";
   static const email_company_support = "business@vndigitech.com";
-  static const hotline_company_support = "0913109530";
+  static const hotline_company_support = "(+84) 973 175 839";
   static const website_company_support = "https://vndigitech.com";
   static const title_support_user = "THÔNG TIN HỖ TRỢ NGƯỜI DÙNG";
-  static const name_company_support_user = "Công ty Bảo Việt TP.Hồ Chí Minh";
+  static const name_company_support_user = "Bộ Phận CSKH";
   static const address_company_support_user =
       "23-25 Thái Văn Lung, Phường Bến Nghé, Quận 1, Tp.Hồ Chí Minh.";
-  static const phone_support_user = "02838247575 – 0913828281 (Nguyễn Tuấn)";
+  static const phone_support_user = "(+84) 913 109 530";
 
   //Key err
   static const CUSTOMER_NOT_FOUND = "Không tim thấy khách hàng";

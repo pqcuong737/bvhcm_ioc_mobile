@@ -107,7 +107,7 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'BAOVIET',
+                          'Digitech Solutions',
                           style: Theme.of(context).textTheme.headline.copyWith(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
@@ -115,7 +115,7 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
                           width: 10,
                         ),
                         Text(
-                          'HCM IOC',
+                          'Digitech Solutions',
                           style: Theme.of(context)
                               .textTheme
                               .headline

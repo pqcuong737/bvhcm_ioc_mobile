@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:load/load.dart';
 import 'package:mobile/src/MyRouter.dart';
@@ -9,10 +7,6 @@ import 'package:mobile/src/utility/LocalStorageService.dart';
 import 'package:mobile/src/utility/LoggerUtil.dart';
 
 void main() {
-  HttpClient client = new HttpClient();
-  client.badCertificateCallback =
-      ((X509Certificate cert, String host, int port) => true);
-
   MyRouter.setupRouter();
   runApp(LoadingProvider(child: MyApp()));
 }

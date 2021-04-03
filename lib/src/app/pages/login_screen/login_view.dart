@@ -4,12 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:load/load.dart';
 import 'package:mobile/src/app/pages/home/main_home_view.dart';
-import 'package:mobile/src/app/pages/register_screen/register_view.dart';
 import 'package:mobile/src/app/pages/login_screen/login_controller.dart';
 import 'package:mobile/src/clean_arch/view.dart';
 import 'package:mobile/src/domain/entities/login.dart';
 import 'package:mobile/src/domain/repositories/login/login_repository.dart';
-import 'package:mobile/src/utility/Colors.dart';
 import 'package:mobile/src/utility/DialogUtilities.dart';
 import 'package:mobile/src/utility/ImagePath.dart';
 import 'package:mobile/src/utility/LocalStorageService.dart';
@@ -35,6 +33,7 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
   String valueLogin;
   String email = null;
   String password = null;
+  String dropdownValue = '';
 
   @override
   void initState() {
@@ -72,26 +71,13 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
         body: Stack(
       children: <Widget>[
         Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                backgroundColorLinearTop,
-                backgroundColorLinearBottom,
-              ],
+          decoration: new BoxDecoration(
+            image: new DecorationImage(
+              image: new AssetImage(ImagePath.background),
+              fit: BoxFit.cover,
             ),
           ),
         ),
-        // Old background
-        // Container(
-        //   decoration: new BoxDecoration(
-        //     image: new DecorationImage(
-        //       image: new AssetImage(ImagePath.background),
-        //       fit: BoxFit.cover,
-        //     ),
-        //   ),
-        // ),
         Container(
           child: SingleChildScrollView(
               child: new Column(
@@ -132,16 +118,15 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Image.asset(
-            // ImagePath.logo,
-            ImagePath.logo_login,
-            height: 60,
+            ImagePath.logo_digitech,
+            fit: BoxFit.fitWidth,
           ),
           SizedBox(
             height: 10,
           ),
           FittedBox(
               child: Text(
-            'CÔNG TY VNDIGTECH',
+            'CÔNG TY TNHH',
             style: Theme.of(context)
                 .textTheme
                 .subhead
@@ -151,7 +136,7 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
             height: 10,
           ),
           Text(
-            'VNDIGITECH IOC',
+            'Digitech Solutions',
             style: Theme.of(context)
                 .textTheme
                 .subhead
@@ -159,7 +144,7 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
           ),
           Padding(
               padding: EdgeInsets.fromLTRB(
-                  20, _size.width / 8, 20, _size.width / 12),
+                  20, _size.width / 7, 20, _size.width / 10),
               child: Text(Strings.login_text,
                   style: Theme.of(context).textTheme.subhead.copyWith(
                       color: Colors.white,
@@ -229,7 +214,6 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
               ),
             ),
           ),
-          // login button
           Container(
             margin: const EdgeInsets.only(top: 20.0),
             width: _size.width,
@@ -259,40 +243,6 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
               },
             ),
           ),
-          // register button
-          Container(
-            margin: const EdgeInsets.only(top: 10.0),
-            width: _size.width,
-            decoration: new BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(8.0))),
-            child: FlatButton(
-              textColor: Colors.blue,
-              child: Text(
-                Strings.REGISTER_TEXT,
-                style: TextStyle(fontSize: 16, color: Colors.blue),
-              ),
-              onPressed: () {
-                NavigatorUtilities.push(context, RegisterScreen());
-              },
-            ),
-          ),
-          // don't have account
-          // Container(
-          //   padding: EdgeInsets.only(top: 10),
-          //   child: GestureDetector(
-          //     onTap: () {
-          //       NavigatorUtilities.push(context, RegisterScreen());
-          //     },
-          //     child: Text(Strings.dont_have_account,
-          //         textAlign: TextAlign.left,
-          //         style: Theme.of(context).textTheme.subhead.copyWith(
-          //             color: Colors.white,
-          //             fontWeight: FontWeight.normal,
-          //             fontSize: 15)),
-          //   ),
-          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -355,6 +305,62 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
               ),
             ],
           ),
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.fromLTRB(10, 40, 10, 10),
+                child: const Divider(
+                  height: 20,
+                  thickness: 5,
+                  indent: 20,
+                  endIndent: 20,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(10, 40, 10, 10),
+                child: const Text(
+                  'CHUYỂN TÀI KHOẢN Ở ĐÂY.',
+                  style: TextStyle(
+                    color: Colors.yellow,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                child: DropdownButton<String>(
+                    value: '1',
+                    dropdownColor: Colors.deepOrange,
+                    icon: const Icon(Icons.arrow_downward),
+                    iconSize: 24,
+                    elevation: 16,
+                    style: const TextStyle(color: Colors.white),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                        var account = DATA_MOCK_LOGIN
+                            .where((e) => e['id'] == dropdownValue);
+                        if (account != null) {
+                          controller.myEmailListener.text =
+                              account.first['email'];
+                          controller.myPasswordListener.text =
+                              account.first['pass'];
+                        }
+                      });
+                    },
+                    items: DATA_MOCK_LOGIN
+                        .map<DropdownMenuItem<String>>((var obj) {
+                      return DropdownMenuItem<String>(
+                        value: obj['id'],
+                        child: Text(obj['name']),
+                      );
+                    }).toList()),
+              ),
+            ],
+          ),
           //isCheckLoginButton == true ? LoadingStypeLine() : SizedBox()
         ],
       ),
@@ -414,4 +420,43 @@ class LoginScreenState extends ViewState<LoginScreen, LoginScreenController> {
   void onConnectivityListener(bool result) {
     isInternetConnected = result;
   }
+
+  final DATA_MOCK_LOGIN = [
+    {
+      "id": '1',
+      "name": "Admin Account",
+      "email": "admin@digitechglobalco.com",
+      "pass": "12345678"
+    },
+    {
+      "id": '2',
+      "name": "Agency Account",
+      "email": "phat2302aa@gmail.com",
+      "pass": "123123123"
+    },
+    {
+      "id": '3',
+      "name": "Manager Account",
+      "email": "andysmith123789456@gmail.com",
+      "pass": "123123123"
+    },
+    {
+      "id": '4',
+      "name": "Director Account",
+      "email": "director@digitechglobalco.com",
+      "pass": "P@ssw0rd2020"
+    },
+    {
+      "id": '5',
+      "name": "Business_Staff Account",
+      "email": "huyentrang081999@gmail.com",
+      "pass": "P@ssw0rd2020"
+    },
+    {
+      "id": '6',
+      "name": "Officer Account",
+      "email": "nthu061198@gmail.com",
+      "pass": "P@ssw0rd2020"
+    },
+  ];
 }

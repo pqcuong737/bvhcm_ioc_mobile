@@ -5,7 +5,6 @@ import 'package:mobile/src/app/pages/home/main_home_view.dart';
 import 'package:mobile/src/app/pages/login_screen/login_view.dart';
 import 'package:mobile/src/clean_arch/view.dart';
 import 'package:mobile/src/domain/entities/login/UserInfor.dart';
-import 'package:mobile/src/utility/Colors.dart';
 import 'package:mobile/src/utility/ImagePath.dart';
 import 'package:mobile/src/utility/LocalStorageService.dart';
 import 'package:mobile/src/utility/NavigationUtilities.dart';
@@ -79,26 +78,11 @@ class SplashScreenState extends State<SplashScreen> {
         child: Stack(
           children: <Widget>[
             SizedBox.expand(
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    backgroundColorLinearTop,
-                    backgroundColorLinearBottom,
-                  ],
-                )),
+              child: Image.asset(
+                ImagePath.background,
+                fit: BoxFit.fill,
               ),
             ),
-
-            // Bao viet background
-            // SizedBox.expand(
-            //   child: Image.asset(
-            //     ImagePath.background,
-            //     fit: BoxFit.fill,
-            //   ),
-            // ),
             Container(
               width: double.infinity,
               padding: EdgeInsets.fromLTRB(_size.width / 13, _size.height / 6,
@@ -107,30 +91,30 @@ class SplashScreenState extends State<SplashScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   _buildLogo(),
-                  // Expanded(
-                  //     child: Center(
-                  //   child: Column(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: <Widget>[
-                  //       Image.asset(
-                  //         ImagePath.ic_branding,
-                  //         height: 52,
-                  //         width: 52,
-                  //         fit: BoxFit.fill,
-                  //       ),
-                  //       Padding(
-                  //           padding: EdgeInsets.only(top: 25),
-                  //           child: Text(Strings.most_popular_branch,
-                  //               style: Theme.of(context)
-                  //                   .textTheme
-                  //                   .subhead
-                  //                   .copyWith(
-                  //                       color: Colors.amberAccent,
-                  //                       fontSize: 14,
-                  //                       fontWeight: FontWeight.bold)))
-                  //     ],
-                  //   ),
-                  // )),
+                  Expanded(
+                      child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        // Image.asset(
+                        //   ImagePath.ic_branding,
+                        //   height: 52,
+                        //   width: 52,
+                        //   fit: BoxFit.fill,
+                        // ),
+                        Padding(
+                            padding: EdgeInsets.only(top: 25),
+                            child: Text(Strings.most_popular_branch,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subhead
+                                    .copyWith(
+                                        color: Colors.amberAccent,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold)))
+                      ],
+                    ),
+                  )),
                   _buildAddress()
                 ],
               ),
@@ -148,8 +132,7 @@ class SplashScreenState extends State<SplashScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Image.asset(
-            // ImagePath.logo,
-            ImagePath.logo_vndigitech,
+            ImagePath.logo_digitech,
             fit: BoxFit.fitWidth,
           ),
           SizedBox(
@@ -157,7 +140,7 @@ class SplashScreenState extends State<SplashScreen> {
           ),
           FittedBox(
               child: Text(
-            Strings.company_name_vndigitech,
+            Strings.company_name,
             style: Theme.of(context)
                 .textTheme
                 .subhead
@@ -167,7 +150,7 @@ class SplashScreenState extends State<SplashScreen> {
             height: 10,
           ),
           Text(
-            Strings.company_subtitle_vndigitech,
+            Strings.company_subtitle,
             style: Theme.of(context)
                 .textTheme
                 .subhead
@@ -185,7 +168,7 @@ class SplashScreenState extends State<SplashScreen> {
       children: <Widget>[
         FittedBox(
             child: new Text(
-          Strings.company_address_vndigitech,
+          Strings.company_address,
           style:
               Theme.of(context).textTheme.subhead.copyWith(color: Colors.white),
           maxLines: 1,
@@ -193,15 +176,11 @@ class SplashScreenState extends State<SplashScreen> {
         SizedBox(
           height: 15,
         ),
-        // '028 3824 7575 - 1900 558899',
-        Text(
-          '(+84) 973 175 839',
-          style: Theme.of(context).textTheme.subhead.copyWith(
+        Text('028 3824 7575 - 1900 558899',
+            style: Theme.of(context).textTheme.subhead.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 16.0,
-              ),
-        ),
+                fontSize: 16.0)),
         SizedBox(
           height: 30,
         ),

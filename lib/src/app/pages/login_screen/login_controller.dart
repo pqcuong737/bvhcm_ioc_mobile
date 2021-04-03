@@ -7,6 +7,9 @@ import 'package:mobile/src/domain/entities/login/LoginResponse.dart';
 import 'package:mobile/src/domain/entities/login/UserInfor.dart';
 import 'package:mobile/src/utility/LocalStorageService.dart';
 
+const DEFAULT_EMAIL = 'admin@digitechglobalco.com';
+const DEFAULT_PASS = '12345678';
+
 class LoginScreenController extends Controller {
   final LoginScreenPresenter loginPresenter;
   LoginResponse _loginResponse;
@@ -32,6 +35,9 @@ class LoginScreenController extends Controller {
 
   @override
   void initListeners() {
+    myEmailListener.text = DEFAULT_EMAIL;
+    myPasswordListener.text = DEFAULT_PASS;
+
     loginPresenter.getLoginOnComplete = () {};
 
     loginPresenter.getLoginOnError = () {

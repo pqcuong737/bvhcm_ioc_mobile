@@ -9,10 +9,7 @@ import 'package:mobile/src/utility/DateUtilities.dart';
 import 'Strings.dart';
 
 class EditPassUtilities {
-  static Widget buildEditText(
-      BuildContext context,
-      String label,
-      String hint,
+  static Widget buildEditText(BuildContext context, String label, String hint,
       TextEditingController controller,
       {bool isNumberInput = false, bool isMandatory = false}) {
     return Padding(
@@ -24,12 +21,16 @@ class EditPassUtilities {
             RichText(
               text: TextSpan(
                 children: <TextSpan>[
-                  TextSpan(text: label, style: Theme
-                      .of(context)
-                      .textTheme
-                      .body2
-                      .copyWith(color: Colors.black)),
-                  TextSpan(text: isMandatory ? ' *' : '', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+                  TextSpan(
+                      text: label,
+                      style: Theme.of(context)
+                          .textTheme
+                          .body2
+                          .copyWith(color: Colors.black)),
+                  TextSpan(
+                      text: isMandatory ? ' *' : '',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red)),
                 ],
               ),
             ),
@@ -42,28 +43,26 @@ class EditPassUtilities {
               },
               obscureText: true,
               controller: controller,
-              keyboardType: isNumberInput ? TextInputType.number : TextInputType.text,
+              keyboardType:
+                  isNumberInput ? TextInputType.number : TextInputType.text,
               decoration: InputDecoration(
                 hintText: hint,
-                hintStyle:
-                Theme
-                    .of(context)
+                hintStyle: Theme.of(context)
                     .textTheme
                     .body2
                     .copyWith(color: Colors.grey),
               ),
-              style: Theme
-                  .of(context)
+              style: Theme.of(context)
                   .textTheme
                   .body2
                   .copyWith(color: Colors.black),
             ),
           ],
-        )
-    );
+        ));
   }
 
-  static AppBar buildAppBar(BuildContext context, String title, String currentStep) {
+  static AppBar buildAppBar(
+      BuildContext context, String title, String currentStep) {
     return AppBar(
       backgroundColor: Colors.blue[600],
       title: Container(
@@ -82,8 +81,7 @@ class EditPassUtilities {
                         Navigator.pop(context);
                       }),
                   Text(title,
-                      style:
-                      TextStyle(color: Colors.white, fontSize: 25.0)),
+                      style: TextStyle(color: Colors.white, fontSize: 25.0)),
                 ],
               ),
             ),
@@ -91,8 +89,7 @@ class EditPassUtilities {
               child: Row(
                 children: <Widget>[
                   Text(Strings.step,
-                      style:
-                      TextStyle(fontSize: 16.0, color: Colors.white)),
+                      style: TextStyle(fontSize: 16.0, color: Colors.white)),
                   SizedBox(width: 5),
                   Text('$currentStep/4',
                       style: TextStyle(
@@ -108,11 +105,8 @@ class EditPassUtilities {
     );
   }
 
-  static Widget buildMoneyEditText(
-      BuildContext context,
-      String label,
-      String hint,
-      MoneyMaskedTextController controller,
+  static Widget buildMoneyEditText(BuildContext context, String label,
+      String hint, MoneyMaskedTextController controller,
       {bool isMandatory = false}) {
     return Padding(
         padding: EdgeInsets.fromLTRB(10, 20, 20, 10),
@@ -123,12 +117,16 @@ class EditPassUtilities {
             RichText(
               text: TextSpan(
                 children: <TextSpan>[
-                  TextSpan(text: label, style: Theme
-                      .of(context)
-                      .textTheme
-                      .body2
-                      .copyWith(color: Colors.black)),
-                  TextSpan(text: isMandatory ? ' *' : '', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+                  TextSpan(
+                      text: label,
+                      style: Theme.of(context)
+                          .textTheme
+                          .body2
+                          .copyWith(color: Colors.black)),
+                  TextSpan(
+                      text: isMandatory ? ' *' : '',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red)),
                 ],
               ),
             ),
@@ -143,25 +141,22 @@ class EditPassUtilities {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: hint,
-                hintStyle:
-                Theme
-                    .of(context)
+                hintStyle: Theme.of(context)
                     .textTheme
                     .body2
                     .copyWith(color: Colors.grey),
               ),
-              style: Theme
-                  .of(context)
+              style: Theme.of(context)
                   .textTheme
                   .body2
                   .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
             ),
           ],
-        )
-    );
+        ));
   }
 
-  static Widget buildFooter(BuildContext context, Function clickSave, Function clickNext) {
+  static Widget buildFooter(
+      BuildContext context, Function clickSave, Function clickNext) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       child: Row(
@@ -172,13 +167,12 @@ class EditPassUtilities {
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.symmetric(horizontal: 10),
               decoration:
-              BoxDecoration(border: Border.all(color: Colors.orangeAccent)),
+                  BoxDecoration(border: Border.all(color: Colors.orangeAccent)),
               child: InkWell(
                 onTap: clickSave,
                 child: Text(Strings.save_temporary,
                     textAlign: TextAlign.center,
-                    style: Theme
-                        .of(context)
+                    style: Theme.of(context)
                         .textTheme
                         .subhead
                         .copyWith(color: Colors.orangeAccent)),
@@ -194,11 +188,11 @@ class EditPassUtilities {
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.symmetric(horizontal: 10),
               child: InkWell(
+                // vietsaclo
                 onTap: clickNext,
                 child: Text(Strings.next,
                     textAlign: TextAlign.center,
-                    style: Theme
-                        .of(context)
+                    style: Theme.of(context)
                         .textTheme
                         .subhead
                         .copyWith(color: Colors.white)),
@@ -210,26 +204,26 @@ class EditPassUtilities {
     );
   }
 
-  static Widget buildDropdown(BuildContext context, String label, List<String> data, TextEditingController controller) {
+  static Widget buildDropdown(BuildContext context, String label,
+      List<String> data, TextEditingController controller) {
     return Padding(
         padding: EdgeInsets.fromLTRB(10, 20, 20, 10),
         child: Stack(
           children: <Widget>[
             ValueListenableBuilder(
-              builder: (BuildContext context, TextEditingValue value, Widget child) {
+              builder:
+                  (BuildContext context, TextEditingValue value, Widget child) {
                 return TextFormField(
                   controller: controller,
                   enabled: false,
                   decoration: InputDecoration(
                     labelText: label,
-                    labelStyle: Theme
-                        .of(context)
+                    labelStyle: Theme.of(context)
                         .textTheme
                         .body2
                         .copyWith(color: Colors.black),
                   ),
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .body2
                       .copyWith(color: Colors.black),
@@ -256,8 +250,7 @@ class EditPassUtilities {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value,
-                              style: Theme
-                                  .of(context)
+                              style: Theme.of(context)
                                   .textTheme
                                   .body2
                                   .copyWith(color: Colors.black)),
@@ -276,26 +269,26 @@ class EditPassUtilities {
         ));
   }
 
-  static Widget buildCalendarPicker(BuildContext context, String label, TextEditingController controller) {
+  static Widget buildCalendarPicker(
+      BuildContext context, String label, TextEditingController controller) {
     return Padding(
         padding: EdgeInsets.fromLTRB(10, 20, 20, 10),
         child: Stack(
           children: <Widget>[
             ValueListenableBuilder(
-              builder: (BuildContext context, TextEditingValue value, Widget child) {
+              builder:
+                  (BuildContext context, TextEditingValue value, Widget child) {
                 return TextFormField(
                   controller: controller,
                   enabled: false,
                   decoration: InputDecoration(
                     labelText: label,
-                    labelStyle: Theme
-                        .of(context)
+                    labelStyle: Theme.of(context)
                         .textTheme
                         .body2
                         .copyWith(color: Colors.black),
                   ),
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .body2
                       .copyWith(color: Colors.black),
@@ -312,12 +305,15 @@ class EditPassUtilities {
                     child: FlatButton(
                         onPressed: () {
                           FocusScope.of(context).requestFocus(new FocusNode());
-                          DatePicker.showDatePicker(context,
-                              onConfirm: (date) {
-                                controller.text = DateUtilities.formatDate(date);
-                              }, currentTime: DateTime.now(), locale: LocaleType.vi);
+                          DatePicker.showDatePicker(context, onConfirm: (date) {
+                            controller.text = DateUtilities.formatDate(date);
+                          },
+                              currentTime: DateTime.now(),
+                              locale: LocaleType.vi);
                         },
-                        child: Text('',)),
+                        child: Text(
+                          '',
+                        )),
                   ),
                   Icon(
                     Icons.calendar_today,
